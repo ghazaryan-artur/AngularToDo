@@ -1,0 +1,10 @@
+<div class="container">
+    <button (click)='addTask()'>Adddddddd</button>
+    <h1>todos</h1>
+    <input class="to-do-input" type="text" name="todo" [(ngModel)]="inputValue" placeholder="What needs to be done?">
+</div>
+<div class="hiddenPart">
+    <ul>
+        <li *ngFor='let item of taskArray'><input class="checkbox" type="checkbox"> {{item}}</li> 
+    </ul>
+</div>

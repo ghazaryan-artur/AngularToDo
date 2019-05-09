@@ -1,0 +1,46 @@
+.container{
+    width: 80vw;
+    margin: auto;
+}
+h1{
+    text-align: center;
+    color: #b4353526;
+    font-size: 70px;
+    margin-bottom: 25px;
+}
+.to-do-input{ 
+    width: 470px;
+    height: 33px;
+    padding: 16px 16px 16px 60px;
+    display: block;
+    margin: auto;
+    font-size: 24px;
+    box-shadow: 0px 10px 70px 13px rgba(201,191,201,1);
+    border: 1px outset #858889;
+}
+.to-do-input::placeholder{
+    font-style: italic;
+    color: lightgrey;
+}
+ul{
+    width:470px; 
+    display: block;
+    margin: auto;
+}
+ul li{
+    display: block;
+    width:470px; 
+    height: 33px;
+    text-decoration: none;
+    margin: auto;
+    border:blue solid 1px;
+}
+
+/* .checkbox {
+     display:none;
+} 
+.checkbox::after{
+    border:solid red 1px;
+    border-radius: 50%;
+    content: 's'
+} */
