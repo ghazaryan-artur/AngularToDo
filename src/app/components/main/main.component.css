@@ -45,4 +45,9 @@ ul li{
     content: 's'
 } */
 
-/* привет гит хаб */
+footer {
+    width:470px; 
+    height: 33px;
+    margin: auto;
+    border:blue solid 1px;
+}

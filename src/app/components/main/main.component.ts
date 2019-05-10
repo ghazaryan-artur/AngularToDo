@@ -1,5 +1,5 @@
 import { Component, OnInit  } from '@angular/core';
-import { FormsModule } from '@angular/forms' ;
+
 
 
 @Component({
@@ -9,15 +9,19 @@ import { FormsModule } from '@angular/forms' ;
 })
 export class MainComponent implements OnInit {
   public inputValue:string = '';
-  public taskArray : Array<string> = ['1','2','3','4'];
+  public taskArray : Array<object> = [{name:'1', completed:false}, {name:'2', completed:false}, {name:'3', completed:false} ];
   constructor() { }
 
   ngOnInit() {
     // this.addTask()
   } 
 
-  addTask(){
-    console.log(this.inputValue);
-    this.taskArray.push(this.inputValue);
+  addTask(event){
+    if(event.which == 13 ){
+      this.taskArray.push({name: this.inputValue, completed:false});
+    }
+  }
+  markComplete(i, data){
+    data[i].completed = !data[i].completed;
   }
 }
