@@ -2,19 +2,22 @@
     <h1>todos</h1>
     <input class="to-do-input" type="text" name="todo" [(ngModel)]="inputValue" placeholder="What needs to be done?" (keyup)="addTask($event)">
 </div>
+<button (click)='console()'>aaaaaaaaaaaaaa</button>
 <div class="hiddenPart">
     <ul>
-        <li *ngFor='let item of taskArray, let i = index'><input (change)="markComplete(i, taskArray)" class="checkbox" type="checkbox">{{item.name}}</li> 
+        <ng-container *ngFor='let item of taskArray, let i = index'>
+            <li *ngIf='item.completed == shownStatus || showAll'><input [checked]='item.completed' (change)="markComplete(i, taskArray)" class="checkbox" type="checkbox">{{item.name}}</li> 
+        </ng-container>
     </ul>
     <footer>
-        <button>All</button>
-        <button>Active</button>
-        <button>Completed</button>
+        <button (click)="toShowAll()">All</button> 
+        <button (click)="show(false)">Active</button>
+        <button (click)="show(true)">Completed</button>
     </footer>
 </div>
 
 <div>
-    <ul>
+    <ul>    
         <ng-container *ngFor='let item of taskArray'>
             <li *ngIf='item.completed'>{{item.name}}</li>
         </ng-container>
