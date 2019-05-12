@@ -9,36 +9,62 @@ import { Component, OnInit  } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   public inputValue:string = '';
-  public taskArray : Array<object> = [{name:'1', completed:false}, {name:'2', completed:false}, {name:'3', completed:false} ];
+  public taskArray : Array<any> = [{name:1, completed:false}];
   public shownStatus:boolean = false;
   public showAll:boolean = true;
+  public completedCount: number = 0;
   constructor() { }
 
-  ngOnInit() {
-
-  } 
+  ngOnInit() { } 
 
   addTask(event){
-    if(event.which == 13 ){
+    if(event.which == 13 && this.inputValue != ''){
       this.taskArray.push({name: this.inputValue, completed:false});
+      this.completedCount++;
+      this.inputValue = '';
     }
   }
-  markComplete(i, data){
-    console.log(i);
+  markComplete(data, i){
     data[i].completed = !data[i].completed;
+    this.notcompletedYet(data, i);
   }
 
   show(trueOrFalse) {
-    console.log(trueOrFalse);
-    console.log('now shown completed');
     this.shownStatus = trueOrFalse;
     this.showAll = false;
   }
 
   toShowAll(){
-    this.showAll = true  
+    this.showAll = true;
+  }
+
+  deleteTask(i, Arr){
+    if(Arr[i].completed == false){
+      this.completedCount--;
+    }
+    Arr.splice(i, 1);
+  }
+
+  notcompletedYet(data, i ){
+    if (data[i].completed == false){
+      this.completedCount++;
+    } else {
+      this.completedCount--;
+    }
+  }
+   
+  clearCompleted(){
+    this.taskArray = this.taskArray.filter(function(item){
+      return !item.completed;
+    });
   }
   console(){
     console.log(this.taskArray);
+  }
+  showMEBabe(i){
+    console.log('hello');
+    console.log(i);
+    let cls = document.getElementsByClassName('checkbox');
+    console.log(cls);
   }
 }

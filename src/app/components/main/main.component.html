@@ -2,24 +2,25 @@
     <h1>todos</h1>
     <input class="to-do-input" type="text" name="todo" [(ngModel)]="inputValue" placeholder="What needs to be done?" (keyup)="addTask($event)">
 </div>
-<button (click)='console()'>aaaaaaaaaaaaaa</button>
 <div class="hiddenPart">
     <ul>
         <ng-container *ngFor='let item of taskArray, let i = index'>
-            <li *ngIf='item.completed == shownStatus || showAll'><input [checked]='item.completed' (change)="markComplete(i, taskArray)" class="checkbox" type="checkbox">{{item.name}}</li> 
+            <li *ngIf='item.completed == shownStatus || showAll'>
+                <div class="round">
+                    <input [checked]='item.completed' (change)="markComplete(taskArray, i)" class="checkbox" type="checkbox" [id]="'checkbox' + i">{{item.name}}
+                    <label (click)="showMEBabe(i)" for="checkbox"></label>
+                </div>
+                <button class="deleteB" (click)="deleteTask(i, taskArray)">&#10006;</button> 
+            </li>
         </ng-container>
     </ul>
     <footer>
-        <button (click)="toShowAll()">All</button> 
-        <button (click)="show(false)">Active</button>
-        <button (click)="show(true)">Completed</button>
+        <span>{{completedCount}} items left</span> 
+        <div>
+            <button (click)="toShowAll()">All</button> 
+            <button (click)="show(false)">Active</button>
+            <button (click)="show(true)">Completed</button>
+        </div>
+        <span (click)="clearCompleted()">Clear completed</span>
     </footer>
-</div>
-
-<div>
-    <ul>    
-        <ng-container *ngFor='let item of taskArray'>
-            <li *ngIf='item.completed'>{{item.name}}</li>
-        </ng-container>
-    </ul>
 </div>
