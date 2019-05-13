@@ -8,6 +8,16 @@ h1{
     font-size: 70px;
     margin-bottom: 25px;
 }
+/* input::after{
+    display: block;
+    border:red 1px solid;
+    content:'2222';
+    width: 30px;
+    height:30px;
+    left:30px;
+    top:30px;
+    position: absolute;
+} */
 .to-do-input{ 
     width: 470px;
     height: 33px;
@@ -19,6 +29,9 @@ h1{
     border: 1px outset #858889;
 }
 .to-do-input::placeholder{
+    width: 10px;
+    height: 65px;
+    margin:auto; 
     font-style: italic;
     color: lightgrey;
 }
@@ -33,12 +46,16 @@ ul li{
     height: 33px;
     text-decoration: none;
     margin: auto;
+    padding:10px;
     border:blue solid 1px;
 }
 
 .round {
     position: relative;
+    width: 30px;
+    float:left;
 }
+
 .round label {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -50,8 +67,8 @@ ul li{
     top: 0;
     width: 28px;
 }
-.round label:after {
-    border: 2px solid #fff;
+.round label::after {
+    border: 2px solid rgb(0, 151, 50);
     border-top: none;
     border-right: none;
     content: "";
@@ -67,28 +84,19 @@ ul li{
 .round input[type="checkbox"] {
    visibility: hidden;
 }
+li span {
+    margin-left:10px;    
+    font-size: 24px;
+}
   
 .round input[type="checkbox"]:checked + label {
-   background-color: #66bb6a;
+   background-color: #ffffff;
    border-color: #66bb6a;
 }
   
-.round input[type="checkbox"]:checked + label:after {
+.round input[type="checkbox"]:checked + label::after {
    opacity: 1;
 }
-/* .checkbox {
-
-    margin-left: 20px;
-} 
-.checkbox::before{
-    opacity:1;
-    background: green;
-    width: 10px;
-    height: 10px;
-    border:solid red 1px;
-    border-radius: 50%;
-    content: 'aaaaaaaaaaa'
-} */
 
 .deleteB{
     display: none;
@@ -110,4 +118,35 @@ footer {
 footer div{
     width: 200px;
     margin: auto;
+}
+.downArrow {
+    width: 548px; 
+    height: 1px;
+    margin:auto;    
+}
+.downArrow div{
+    width: 30px;
+}
+
+.downArrow label {
+    position: relative;
+    top: 5px;
+    left: 3px;
+    width: 1px;
+    height: 1px;
+
+}
+.downArrow label::before {
+    display: block;
+    width: 60px;
+    height: 60px;
+    content:'\27A4'; 
+    /* border: red solid 1px; */
+    border-radius: 50%;
+    padding: 0 0 0px 11px;
+    box-sizing: border-box;
+    transform: rotate(90deg); 
+    color: lightgray;
+    font-size: 40px;
+    margin:0; 
 }

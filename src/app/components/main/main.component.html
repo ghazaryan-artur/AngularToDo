@@ -1,15 +1,25 @@
 <div class="container">
     <h1>todos</h1>
-    <input class="to-do-input" type="text" name="todo" [(ngModel)]="inputValue" placeholder="What needs to be done?" (keyup)="addTask($event)">
+    <div class="downArrow">
+        <div>
+            <label (click)='markAll()' class="strelka-vniz"></label> 
+        </div>
+    </div>  
+        <input class="to-do-input" type="text" name="todo" [(ngModel)]="inputValue" placeholder="What needs to be done?" (keyup)="addTask($event)">
+       
+   
 </div>
 <div class="hiddenPart">
+    
     <ul>
         <ng-container *ngFor='let item of taskArray, let i = index'>
-            <li *ngIf='item.completed == shownStatus || showAll'>
+
+            <li *ngIf='item.completed == shownStatus || showAll'>            
                 <div class="round">
-                    <input [checked]='item.completed' (change)="markComplete(taskArray, i)" class="checkbox" type="checkbox" [id]="'checkbox' + i">{{item.name}}
-                    <label (click)="showMEBabe(i)" for="checkbox"></label>
+                    <input [checked]='item.completed' (change)="markComplete(taskArray, i)" class="checkbox" type="checkbox" [id]="'checkbox' + i">
+                    <label [for]="'checkbox' + i"></label>
                 </div>
+                <span>{{item.name}}</span>
                 <button class="deleteB" (click)="deleteTask(i, taskArray)">&#10006;</button> 
             </li>
         </ng-container>

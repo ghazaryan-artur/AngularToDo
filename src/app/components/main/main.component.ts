@@ -9,7 +9,7 @@ import { Component, OnInit  } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   public inputValue:string = '';
-  public taskArray : Array<any> = [{name:1, completed:false}];
+  public taskArray : Array<any> = [{name:111111111111111111, completed:false}];
   public shownStatus:boolean = false;
   public showAll:boolean = true;
   public completedCount: number = 0;
@@ -58,13 +58,11 @@ export class MainComponent implements OnInit {
       return !item.completed;
     });
   }
+  markAll(){
+    console.log('hello');
+  }
   console(){
     console.log(this.taskArray);
   }
-  showMEBabe(i){
-    console.log('hello');
-    console.log(i);
-    let cls = document.getElementsByClassName('checkbox');
-    console.log(cls);
-  }
+
 }
