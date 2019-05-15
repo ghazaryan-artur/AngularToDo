@@ -25,12 +25,16 @@
         </ng-container>
     </ul>
     <footer>
-        <span>{{completedCount}} items left</span> 
+        <div>
+            <span>{{completedCount}} items left</span> 
+        </div>
         <div>
             <button (click)="toShowAll()">All</button> 
             <button (click)="show(false)">Active</button>
             <button (click)="show(true)">Completed</button>
         </div>
-        <span (click)="clearCompleted()">Clear completed</span>
-    </footer>
+        <div>
+            <span class="underline" (click)="clearCompleted()">Clear completed</span>
+        </div>
+        </footer>
 </div>

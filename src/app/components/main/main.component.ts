@@ -8,11 +8,11 @@ import { Component, OnInit  } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  public inputValue:string = '';
-  public taskArray : Array<any> = [{name:111111111111111111, completed:false}];
-  public shownStatus:boolean = false;
-  public showAll:boolean = true;
-  public completedCount: number = 0;
+  public inputValue     : string = '';
+  public taskArray      : Array<any> = [{name:1111111111111111, completed:false}];
+  public shownStatus    : boolean = false;
+  public showAll        : boolean = true;
+  public completedCount : number = 0;
   constructor() { }
 
   ngOnInit() { } 
