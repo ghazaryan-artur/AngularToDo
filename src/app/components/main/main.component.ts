@@ -9,7 +9,7 @@ import { Component, OnInit  } from '@angular/core';
 })
 export class MainComponent implements OnInit {
   public inputValue     : string = '';
-  public taskArray      : Array<any> = [{name:1111111111111111, completed:false}];
+  public taskArray      : Array<any> = [];
   public shownStatus    : boolean = false;
   public showAll        : boolean = true;
   public completedCount : number = 0;
@@ -24,18 +24,30 @@ export class MainComponent implements OnInit {
       this.inputValue = '';
     }
   }
+
   markComplete(data, i){
     data[i].completed = !data[i].completed;
-    this.notcompletedYet(data, i);
+    this.notCompletedYet(data, i);
   }
 
-  show(trueOrFalse) {
+  show(trueOrFalse, index) {
     this.shownStatus = trueOrFalse;
     this.showAll = false;
+    this.makeFocus(index);
   }
 
-  toShowAll(){
+  toShowAll(index){
     this.showAll = true;
+    this.makeFocus(index);
+  }
+
+  makeFocus(index){
+    let buttonsInFooter = document.getElementsByTagName('footer')[0].getElementsByTagName("button");
+
+    for (let i = 0; i< buttonsInFooter.length; i++){
+      buttonsInFooter[i].removeAttribute('class');
+    }
+    buttonsInFooter[index].className = 'active';
   }
 
   deleteTask(i, Arr){
@@ -45,7 +57,7 @@ export class MainComponent implements OnInit {
     Arr.splice(i, 1);
   }
 
-  notcompletedYet(data, i ){
+  notCompletedYet(data, i ){
     if (data[i].completed == false){
       this.completedCount++;
     } else {
@@ -58,11 +70,19 @@ export class MainComponent implements OnInit {
       return !item.completed;
     });
   }
-  markAll(){
-    console.log('hello');
-  }
-  console(){
-    console.log(this.taskArray);
+
+  markAll(taskArray){ // harc unem this ev arandz this
+      if (this.completedCount != 0){ // если хотя бы 1 не завершен, то все пометить как завершенные
+        for(let i = 0; i<taskArray.length; i++){
+          taskArray[i].completed = true;
+        }
+        this.completedCount = 0;
+      } else { // если все завершенны, то всех пометить как незавершенные
+        for(let i = 0; i<taskArray.length; i++){
+          taskArray[i].completed = false;
+        }
+        this.completedCount = taskArray.length;
+      }
   }
 
 }

@@ -1,40 +1,41 @@
 <div class="container">
     <h1>todos</h1>
-    <div class="downArrow">
+    <div class="downArrow" [ngStyle]="!this.completedCount && taskArray.length && {'opacity':'0.8'}"> 
         <div>
-            <label (click)='markAll()' class="strelka-vniz"></label> 
+            <label (click)='markAll(taskArray)'></label>
         </div>
     </div>  
         <input class="to-do-input" type="text" name="todo" [(ngModel)]="inputValue" placeholder="What needs to be done?" (keyup)="addTask($event)">
-       
-   
 </div>
-<div class="hiddenPart">
-    
+
+<!-- Hiden part -->
+<div [ngStyle]="!taskArray.length &&{'display': 'none'}">
     <ul>
         <ng-container *ngFor='let item of taskArray, let i = index'>
-
             <li *ngIf='item.completed == shownStatus || showAll'>            
                 <div class="round">
-                    <input [checked]='item.completed' (change)="markComplete(taskArray, i)" class="checkbox" type="checkbox" [id]="'checkbox' + i">
+                    <input [id]="'checkbox' + i"  [checked]='item.completed' (change)="markComplete(taskArray, i)" class="checkbox" type="checkbox">
                     <label [for]="'checkbox' + i"></label>
                 </div>
-                <span>{{item.name}}</span>
+                <span [ngStyle]="item.completed && {'text-decoration-line':'line-through'}">{{item.name}}</span>
                 <button class="deleteB" (click)="deleteTask(i, taskArray)">&#10006;</button> 
             </li>
         </ng-container>
     </ul>
-    <footer>
-        <div>
+    <footer> 
+        <div *ngIf="completedCount != 1; else elseBlock">
             <span>{{completedCount}} items left</span> 
         </div>
+        <ng-template #elseBlock>
+            <span>{{completedCount}} item left</span> 
+        </ng-template>
         <div>
-            <button (click)="toShowAll()">All</button> 
-            <button (click)="show(false)">Active</button>
-            <button (click)="show(true)">Completed</button>
+            <button (click)="toShowAll(0)">All</button> 
+            <button (click)="show(false, 1)">Active</button>
+            <button (click)="show(true, 2)">Completed</button>
         </div>
         <div>
-            <span class="underline" (click)="clearCompleted()">Clear completed</span>
+            <span [ngStyle]="completedCount == taskArray.length && {'visibility':'hidden'} " class="underline" (click)="clearCompleted()">Clear completed</span>
         </div>
         </footer>
 </div>
