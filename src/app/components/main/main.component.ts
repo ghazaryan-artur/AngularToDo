@@ -3,9 +3,9 @@ import { Component, OnInit  } from '@angular/core';
 
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector    : 'app-main',
+  templateUrl : './main.component.html',
+  styleUrls   : ['./main.component.css']
 })
 export class MainComponent implements OnInit {
   public inputValue     : string = '';
@@ -18,32 +18,31 @@ export class MainComponent implements OnInit {
   ngOnInit() { } 
 
   addTask(event){
-    if(event.which == 13 && this.inputValue != ''){
+    if(event.which === 13 && this.inputValue != ''){
       this.taskArray.push({name: this.inputValue, completed:false});
       this.completedCount++;
       this.inputValue = '';
     }
   }
 
-  markComplete(data, i){
+  markComplete(data, i){ // маркирует процесс как завершенный или обратно
     data[i].completed = !data[i].completed;
     this.notCompletedYet(data, i);
   }
 
-  show(trueOrFalse, index) {
+  show(trueOrFalse, index) { // определяет показ Активных компонентов (предается false), или завершенных (предается true)
     this.shownStatus = trueOrFalse;
     this.showAll = false;
     this.makeFocus(index);
   }
 
-  toShowAll(index){
+  toShowAll(index){ // показывает все елементы
     this.showAll = true;
     this.makeFocus(index);
   }
 
-  makeFocus(index){
+  makeFocus(index){ // оставляет красный бордер после клика на другие области
     let buttonsInFooter = document.getElementsByTagName('footer')[0].getElementsByTagName("button");
-
     for (let i = 0; i< buttonsInFooter.length; i++){
       buttonsInFooter[i].removeAttribute('class');
     }
@@ -51,14 +50,14 @@ export class MainComponent implements OnInit {
   }
 
   deleteTask(i, Arr){
-    if(Arr[i].completed == false){
+    if(Arr[i].completed === false){
       this.completedCount--;
     }
     Arr.splice(i, 1);
   }
 
-  notCompletedYet(data, i ){
-    if (data[i].completed == false){
+  notCompletedYet(data, i ){ // счетчик незавершенных элементов
+    if (data[i].completed === false){
       this.completedCount++;
     } else {
       this.completedCount--;

@@ -12,7 +12,7 @@
 <div [ngStyle]="!taskArray.length &&{'display': 'none'}">
     <ul>
         <ng-container *ngFor='let item of taskArray, let i = index'>
-            <li *ngIf='item.completed == shownStatus || showAll'>            
+            <li *ngIf='item.completed === shownStatus || showAll'>            
                 <div class="round">
                     <input [id]="'checkbox' + i"  [checked]='item.completed' (change)="markComplete(taskArray, i)" class="checkbox" type="checkbox">
                     <label [for]="'checkbox' + i"></label>
@@ -23,7 +23,7 @@
         </ng-container>
     </ul>
     <footer> 
-        <div *ngIf="completedCount != 1; else elseBlock">
+        <div *ngIf="completedCount !== 1; else elseBlock">
             <span>{{completedCount}} items left</span> 
         </div>
         <ng-template #elseBlock>
@@ -35,7 +35,7 @@
             <button (click)="show(true, 2)">Completed</button>
         </div>
         <div>
-            <span [ngStyle]="completedCount == taskArray.length && {'visibility':'hidden'} " class="underline" (click)="clearCompleted()">Clear completed</span>
+            <span [ngStyle]="completedCount === taskArray.length && {'visibility':'hidden'} " class="underline" (click)="clearCompleted()">Clear completed</span>
         </div>
         </footer>
 </div>
